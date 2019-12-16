@@ -1,0 +1,5 @@
+python: /hwfssz6/B2C_RD_P2/USER/fangzhonghai/software/miniconda2/bin/python
+vcf_header: /zfssz4/B2C_RD_P2/PMO/fangzhonghai/py_scripts/vcf_head.txt
+spliceai: /hwfssz6/B2C_RD_P2/USER/fangzhonghai/software/miniconda2/envs/py3spliceai/bin/spliceai
+merge_res: /zfssz4/B2C_RD_P2/PMO/fangzhonghai/py_scripts/merge_spliceai_excel.py
+reference: /hwfssz1/ST_MCHRI/CLINIC/SOFTWARES/analysis_pipeline/HPC_chip/db/aln_db/hg19/hg19_chM_male_mask.fa
