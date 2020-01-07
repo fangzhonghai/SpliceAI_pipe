@@ -9,11 +9,13 @@ def print_usage(option, opt, value, parser):
     usage_message = """
 # --------------------------------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------------------
-
+  Merge SpliceAI pipe result.
+  python SpliceAI_pipe/merge_spliceai_excel.py -i example/NA12878.xlsx -s sampleID -p /path/to/work \
+  --input_format bed --file_format excel -b /path/to/work/sampleID.bed2vcf.all.bed
 # --------------------------------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------------------
     """
-    print usage_message
+    print(usage_message)
     sys.exit()
 
 

@@ -13,7 +13,12 @@ def print_usage(option, opt, value, parser):
     usage_message = """
 # --------------------------------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------------------
-
+  SpliceAI pipeline for identifying splice variants
+  python SpliceAI_pipe/SpliceAI_pipe.py -b SpliceAI_pipe/example/NA12878.txt -p /path/to/work -o sampleID \
+  -c SpliceAI_pipe/spliceai.yaml --pro project_in_sge --threads 5 --file_format tsv
+                                                    OR
+  python SpliceAI_pipe/SpliceAI_pipe.py -b SpliceAI_pipe/example/NA12878.xlsx -p /path/to/work -o sampleID \
+  -c SpliceAI_pipe/spliceai.yaml --pro project_in_sge --threads 5 --file_format excel
 # --------------------------------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------------------
     """
