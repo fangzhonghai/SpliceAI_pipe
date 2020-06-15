@@ -73,7 +73,7 @@ def vcf_anno_format(bed, reference, in_file_format, sheet_no):
     bed_5_cols_df.loc[(bed_5_cols_df['Ref'].map(len) == 1) & (bed_5_cols_df['Call'].map(len) == 1) & (bed_5_cols_df['Ref'] != '.') & (bed_5_cols_df['Call'] != '.'), 'MuType'] = 'snp'
     bed_5_cols_df['POS'] = bed_5_cols_df['Stop']
     bed_5_cols_df.loc[bed_5_cols_df['MuType'] == 'del', 'POS'] = bed_5_cols_df.loc[bed_5_cols_df['MuType'] == 'del', 'Start']
-    bed_5_cols_df.loc[bed_5_cols_df['MuType'] == 'delins', 'POS'] = bed_5_cols_df.loc[bed_5_cols_df['MuType'] == 'delins', 'Start'] + 1
+    bed_5_cols_df.loc[bed_5_cols_df['MuType'] == 'delins', 'POS'] = bed_5_cols_df.loc[bed_5_cols_df['MuType'] == 'delins', 'Start']
     bed_5_cols_df['REF'] = bed_5_cols_df['Ref']
     bed_5_cols_df['ALT'] = bed_5_cols_df['Call']
     fa = pyfaidx.Fasta(reference)
@@ -85,6 +85,10 @@ def vcf_anno_format(bed, reference, in_file_format, sheet_no):
         elif bed_5_cols_df.ix[i, 'MuType'] == 'del':
             base = str(fa.get_seq(bed_5_cols_df.ix[i, '#CHROM'], bed_5_cols_df.ix[i, 'POS'], bed_5_cols_df.ix[i, 'POS'])).upper()
             bed_5_cols_df.ix[i, 'ALT'] = base
+            bed_5_cols_df.ix[i, 'REF'] = base + bed_5_cols_df.ix[i, 'REF']
+        elif bed_5_cols_df.ix[i, 'MuType'] == 'delins':
+            base = str(fa.get_seq(bed_5_cols_df.ix[i, '#CHROM'], bed_5_cols_df.ix[i, 'POS'], bed_5_cols_df.ix[i, 'POS'])).upper()
+            bed_5_cols_df.ix[i, 'ALT'] = base + bed_5_cols_df.ix[i, 'ALT']
             bed_5_cols_df.ix[i, 'REF'] = base + bed_5_cols_df.ix[i, 'REF']
     # bed_5_cols_df_rm = bed_5_cols_df[bed_5_cols_df['MuType'] != 'err'].copy()
     return bed_5_cols_df[["#CHROM", "POS", "ID", "REF", "ALT", "QUAL", "FILTER", "INFO"]], bed_5_cols_df[["#Chr", "Start", "Stop", "Ref", "Call", "#CHROM", "POS", "REF", "ALT"]], bed_df
